@@ -1,0 +1,15 @@
+pandas
+numpy
+faker
+psycopg2-binary
+sqlalchemy
+python-dotenv
+pytest
+ruff
+black
+pyarrow
+pyspark
+confluent-kafka
+apache-airflow
+
+

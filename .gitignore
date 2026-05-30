@@ -1,0 +1,52 @@
+cat > .gitignore << 'EOF'
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# Environment
+.env
+.env.local
+
+# Data
+data_lake/raw/*
+data_lake/bronze/*
+data_lake/silver/*
+data_lake/gold/*
+!data_lake/raw/.gitkeep
+!data_lake/bronze/.gitkeep
+!data_lake/silver/.gitkeep
+!data_lake/gold/.gitkeep
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Docker
+docker-data/
+
+# Airflow
+airflow/logs/
+airflow/plugins/
+airflow/airflow.cfg
+
+# Spark
+metastore_db/
+derby.log
+
+# Test
+.pytest_cache/
+.coverage
+htmlcov/
+EOF
