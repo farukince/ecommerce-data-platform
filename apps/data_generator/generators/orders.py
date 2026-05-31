@@ -12,6 +12,7 @@ PAYMENT_METHODS = ["credit_card", "debit_card", "wallet", "bank_transfer"]
 SHIPMENT_STATUSES = ["preparing", "shipped", "delivered", "delayed"]
 RETURN_STATUSES = ["requested", "approved", "rejected", "completed"]
 RETURN_REASONS = ["damaged_product", "wrong_size", "late_delivery", "changed_mind"]
+CARGO_COMPANIES = ["Trendyol Express", "Yurtici Kargo", "Aras Kargo", "MNG Kargo"]
 
 
 def random_datetime_within_days(days: int = 30) -> datetime:
@@ -35,6 +36,7 @@ def generate_orders(user_ids: list[int], count: int = 300) -> list[dict]:
                 "order_status": random.choice(ORDER_STATUSES),
                 "order_date": order_date,
                 "total_amount": total_amount,
+                "created_at": order_date,
                 "updated_at": order_date,
             }
         )
@@ -42,7 +44,11 @@ def generate_orders(user_ids: list[int], count: int = 300) -> list[dict]:
     return orders
 
 
-def generate_order_items(order_ids: list[int], product_ids: list[int], count: int = 700) -> list[dict]:
+def generate_order_items(
+    order_ids: list[int],
+    product_ids: list[int],
+    count: int = 700,
+) -> list[dict]:
     order_items = []
 
     for _ in range(count):
@@ -73,7 +79,9 @@ def generate_payments(order_ids: list[int], count: int = 300) -> list[dict]:
                 "payment_status": payment_status,
                 "payment_method": random.choice(PAYMENT_METHODS),
                 "payment_amount": round(random.uniform(100, 15000), 2),
-                "paid_at": random_datetime_within_days() if payment_status == "success" else None,
+                "paid_at": random_datetime_within_days()
+                if payment_status == "success"
+                else None,
             }
         )
 
@@ -86,12 +94,18 @@ def generate_shipments(order_ids: list[int], count: int = 250) -> list[dict]:
     for order_id in random.sample(order_ids, min(count, len(order_ids))):
         shipment_status = random.choice(SHIPMENT_STATUSES)
         shipped_at = random_datetime_within_days()
-        delivered_at = shipped_at + timedelta(days=random.randint(1, 7)) if shipment_status == "delivered" else None
+        delivered_at = (
+            shipped_at + timedelta(days=random.randint(1, 7))
+            if shipment_status == "delivered"
+            else None
+        )
 
         shipments.append(
             {
                 "order_id": order_id,
                 "shipment_status": shipment_status,
+                "cargo_company": random.choice(CARGO_COMPANIES),
+                "tracking_number": fake.bothify(text="TRK-########"),
                 "shipped_at": shipped_at,
                 "delivered_at": delivered_at,
             }

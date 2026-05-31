@@ -48,6 +48,7 @@ def generate_click_events(
                 "event_type": random.choice(CLICK_EVENT_TYPES),
                 "page_url": fake.uri_path(),
                 "device_type": random.choice(DEVICE_TYPES),
+                "session_id": fake.uuid4(),
                 "event_timestamp": random_event_timestamp(),
             }
         )
@@ -70,6 +71,7 @@ def generate_cart_events(
                 "event_type": random.choice(CART_EVENT_TYPES),
                 "quantity": random.randint(1, 5),
                 "cart_id": fake.uuid4(),
+                "session_id": fake.uuid4(),
                 "event_timestamp": random_event_timestamp(),
             }
         )
