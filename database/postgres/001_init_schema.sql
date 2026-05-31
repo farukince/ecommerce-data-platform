@@ -61,3 +61,24 @@ CREATE TABLE IF NOT EXISTS returns (
     return_status TEXT NOT NULL,
     returned_at TIMESTAMP
 );
+
+CREATE TABLE IF NOT EXISTS click_events (
+    event_id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(user_id),
+    product_id BIGINT REFERENCES products(product_id),
+    event_type TEXT NOT NULL,
+    page_url TEXT,
+    device_type TEXT,
+    event_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS cart_events (
+    event_id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT REFERENCES users(user_id),
+    product_id BIGINT REFERENCES products(product_id),
+    event_type TEXT NOT NULL,
+    quantity INTEGER DEFAULT 1,
+    cart_id TEXT,
+    event_timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
