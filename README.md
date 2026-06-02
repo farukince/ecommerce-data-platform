@@ -44,3 +44,22 @@ Bronze Parquet
 Silver Clean Parquet
   ↓
 Gold Analytics JSON
+
+## Data Quality Checks
+
+The project includes a data quality layer that validates silver data before analytics usage.
+
+Current checks:
+
+- `order_id_not_null`
+- `duplicate_orders`
+- `payment_amount_non_negative`
+- `order_total_matches_order_items`
+- `delivered_shipments_have_delivered_at`
+- `returns_have_valid_orders`
+- `event_timestamp_not_in_future`
+
+Run quality checks:
+
+```bash
+python -m pipelines.quality.run_quality_checks
