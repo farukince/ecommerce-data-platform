@@ -24,3 +24,11 @@ Data Quality Checks
 Data Warehouse Models (BigQuery/PostgreSQL)
         ↓
 Analytics Queries / Dashboard / AI Agent
+
+## Raw Data Extraction
+
+The raw extraction pipeline reads operational PostgreSQL tables and writes them into the raw data lake layer as JSON files.
+
+```bash
+python -m pipelines.extract.extract_postgres_to_raw
+
