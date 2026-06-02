@@ -32,3 +32,15 @@ The raw extraction pipeline reads operational PostgreSQL tables and writes them 
 ```bash
 python -m pipelines.extract.extract_postgres_to_raw
 
+## Lakehouse Transformations
+
+The project uses a simple lakehouse-style data flow:
+
+```text
+Raw JSON
+  ↓
+Bronze Parquet
+  ↓
+Silver Clean Parquet
+  ↓
+Gold Analytics JSON
