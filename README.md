@@ -63,3 +63,26 @@ Run quality checks:
 
 ```bash
 python -m pipelines.quality.run_quality_checks
+
+## Airflow Orchestration
+
+The project includes an Airflow DAG that orchestrates the end-to-end ecommerce data pipeline.
+
+Pipeline order:
+
+```text
+generate_data
+  ↓
+extract_postgres_data
+  ↓
+write_raw_layer
+  ↓
+transform_raw_to_bronze
+  ↓
+transform_bronze_to_silver
+  ↓
+run_quality_checks
+  ↓
+build_gold_tables
+  ↓
+load_warehouse
