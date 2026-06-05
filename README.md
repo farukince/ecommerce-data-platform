@@ -111,3 +111,21 @@ Run warehouse model creation:
 
 ```bash
 python -m pipelines.load.warehouse_loader
+
+## Analytics Queries
+
+The project includes business-oriented SQL queries that answer marketplace analytics questions.
+
+Examples:
+
+- Daily revenue
+- Top selling categories
+- Cart abandonment rate
+- Return rate by category
+- Payment failure rate
+- Late shipment impact on returns
+
+Query files are located in:
+
+```text
+warehouse/analytics/
