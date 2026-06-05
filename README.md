@@ -129,3 +129,18 @@ Query files are located in:
 
 ```text
 warehouse/analytics/
+
+## Kafka Event Streaming
+
+The project includes a Kafka-based streaming pipeline for ecommerce events.
+
+Streaming flow:
+
+```text
+Python Event Producer
+  ↓
+Kafka Topics
+  ↓
+Raw Event Consumer
+  ↓
+data_lake/raw/kafka_events/*.jsonl
