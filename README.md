@@ -160,4 +160,23 @@ CDC event builder
   ↓
 data_lake/raw/cdc_events/*.jsonl
 
+<<<<<<< Updated upstream
 > Note: This is an MVP CDC simulation. A future phase can replace this with Debezium + PostgreSQL + Kafka for log-based CDC.
+=======
+> Note: This is an MVP CDC simulation. A future phase can replace this with Debezium + PostgreSQL + Kafka for log-based CDC.
+
+## Spark Lakehouse Transformations
+
+The project includes Spark-based lakehouse transformations for scaling the raw, bronze, silver and gold processing layers.
+
+Spark flow:
+
+```text
+Raw JSON
+  ↓
+Bronze Parquet
+  ↓
+Silver Clean Parquet
+  ↓
+Gold Analytics Parquet
+>>>>>>> Stashed changes
