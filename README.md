@@ -144,3 +144,20 @@ Kafka Topics
 Raw Event Consumer
   ↓
 data_lake/raw/kafka_events/*.jsonl
+
+## CDC Simulation
+
+The project includes a lightweight CDC simulation based on `updated_at` columns.
+
+CDC flow:
+
+```text
+PostgreSQL tables
+  ↓
+updated_at-based change detection
+  ↓
+CDC event builder
+  ↓
+data_lake/raw/cdc_events/*.jsonl
+
+> Note: This is an MVP CDC simulation. A future phase can replace this with Debezium + PostgreSQL + Kafka for log-based CDC.
