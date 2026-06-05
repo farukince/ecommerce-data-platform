@@ -4,7 +4,7 @@ try:
     from airflow import DAG
     from airflow.operators.empty import EmptyOperator
     from airflow.operators.python import PythonOperator
-
+    from pipelines.load.warehouse_loader import load_warehouse_models
     from apps.data_generator.main import main as generate_synthetic_data
     from pipelines.extract.extract_postgres_to_raw import extract_postgres_to_raw
     from pipelines.quality.run_quality_checks import main as run_data_quality_checks
@@ -81,8 +81,9 @@ try:
             python_callable=build_all_gold_datasets,
         )
 
-        load_warehouse = EmptyOperator(
+        load_warehouse = PythonOperator(
             task_id="load_warehouse",
+            python_callable=load_warehouse_models,
         )
 
         end = EmptyOperator(task_id="end")

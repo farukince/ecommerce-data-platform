@@ -86,3 +86,28 @@ run_quality_checks
 build_gold_tables
   ↓
 load_warehouse
+
+## Warehouse Models
+
+The project includes a PostgreSQL-based warehouse layer with fact and dimension tables.
+
+Main dimension tables:
+
+- `warehouse.dim_users`
+- `warehouse.dim_products`
+- `warehouse.dim_categories`
+- `warehouse.dim_sellers`
+- `warehouse.dim_date`
+
+Main fact tables:
+
+- `warehouse.fact_orders`
+- `warehouse.fact_payments`
+- `warehouse.fact_shipments`
+- `warehouse.fact_returns`
+- `warehouse.fact_clickstream`
+
+Run warehouse model creation:
+
+```bash
+python -m pipelines.load.warehouse_loader
