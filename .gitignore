@@ -22,6 +22,8 @@ data_lake/gold/*
 !data_lake/gold/.gitkeep
 data_lake/quality_reports/*
 !data_lake/quality_reports/.gitkeep
+data_lake/raw/cdc_events/*.jsonl
+data_lake/raw/cdc_state/state.json
 
 # Logs
 logs/
