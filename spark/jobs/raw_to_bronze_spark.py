@@ -4,7 +4,6 @@ from pyspark.sql.functions import current_timestamp
 
 from spark.utils.spark_session import get_spark_session
 
-
 RAW_BASE_PATH = Path("data_lake/raw")
 BRONZE_BASE_PATH = Path("data_lake/bronze")
 

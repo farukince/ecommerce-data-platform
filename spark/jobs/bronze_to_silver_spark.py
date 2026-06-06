@@ -6,7 +6,6 @@ from pyspark.sql.functions import col, current_timestamp, to_timestamp
 from spark.jobs.raw_to_bronze_spark import SOURCE_TABLES
 from spark.utils.spark_session import get_spark_session
 
-
 BRONZE_BASE_PATH = Path("data_lake/bronze")
 SILVER_BASE_PATH = Path("data_lake/silver")
 

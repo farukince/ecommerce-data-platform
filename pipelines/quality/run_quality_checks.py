@@ -4,7 +4,6 @@ from pathlib import Path
 
 from pipelines.quality.data_quality_checks import run_all_quality_checks
 
-
 QUALITY_REPORTS_PATH = Path("data_lake/quality_reports")
 
 

@@ -20,4 +20,3 @@ class DatabaseConfig:
             f"postgresql+psycopg2://{self.user}:{self.password}"
             f"@{self.host}:{self.port}/{self.database}"
         )
-    

@@ -1,6 +1,9 @@
 from apps.data_generator.db import execute_many, fetch_ids, get_engine
 from apps.data_generator.generators.categories import generate_categories
-from apps.data_generator.generators.events import generate_cart_events, generate_click_events
+from apps.data_generator.generators.events import (
+    generate_cart_events,
+    generate_click_events,
+)
 from apps.data_generator.generators.inventory import generate_product_inventory
 from apps.data_generator.generators.orders import (
     generate_order_items,
@@ -150,10 +153,20 @@ def insert_shipments(count: int = 250) -> None:
 
     query = """
     INSERT INTO shipments (
-        order_id, shipment_status, cargo_company, tracking_number, shipped_at, delivered_at
+        order_id, 
+        shipment_status, 
+        cargo_company, 
+        tracking_number, 
+        shipped_at, 
+        delivered_at
     )
     VALUES (
-        :order_id, :shipment_status, :cargo_company, :tracking_number, :shipped_at, :delivered_at
+        :order_id, 
+        :shipment_status,
+        :cargo_company, 
+        :tracking_number, 
+        :shipped_at, 
+        :delivered_at
     )
     """
 
@@ -187,10 +200,22 @@ def insert_click_events(count: int = 1000) -> None:
 
     query = """
     INSERT INTO click_events (
-        user_id, product_id, event_type, page_url, device_type, session_id, event_timestamp
+        user_id, 
+        product_id, 
+        event_type, 
+        page_url, 
+        device_type, 
+        session_id, 
+        event_timestamp
     )
     VALUES (
-        :user_id, :product_id, :event_type, :page_url, :device_type, :session_id, :event_timestamp
+        :user_id, 
+        :product_id, 
+        :event_type, 
+        :page_url, 
+        :device_type, 
+        :session_id, 
+        :event_timestamp
     )
     """
 
@@ -206,10 +231,22 @@ def insert_cart_events(count: int = 500) -> None:
 
     query = """
     INSERT INTO cart_events (
-        user_id, product_id, event_type, quantity, cart_id, session_id, event_timestamp
+        user_id, 
+        product_id, 
+        event_type, 
+        quantity, 
+        cart_id, 
+        session_id, 
+        event_timestamp
     )
     VALUES (
-        :user_id, :product_id, :event_type, :quantity, :cart_id, :session_id, :event_timestamp
+        :user_id, 
+        :product_id, 
+        :event_type, 
+        :quantity, 
+        :cart_id, 
+        :session_id, 
+        :event_timestamp
     )
     """
 

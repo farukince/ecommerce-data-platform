@@ -9,7 +9,6 @@ from sqlalchemy import text
 from apps.data_generator.db import get_engine
 from pipelines.cdc.cdc_state import load_state, save_state
 
-
 CDC_OUTPUT_PATH = Path("data_lake/raw/cdc_events")
 
 
@@ -59,15 +58,13 @@ def fetch_changed_rows(
 ) -> list[dict]:
     engine = get_engine()
 
-    query = text(
-        f"""
+    query = text(f"""
         SELECT *
         FROM {table_name}
         WHERE {updated_at_column} > :last_run_at
           AND {updated_at_column} <= :current_run_at
         ORDER BY {updated_at_column}
-        """
-    )
+        """)
 
     with engine.connect() as connection:
         result = connection.execute(

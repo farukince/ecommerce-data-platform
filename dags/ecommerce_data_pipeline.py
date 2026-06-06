@@ -4,9 +4,10 @@ try:
     from airflow import DAG
     from airflow.operators.empty import EmptyOperator
     from airflow.operators.python import PythonOperator
-    from pipelines.load.warehouse_loader import load_warehouse_models
+
     from apps.data_generator.main import main as generate_synthetic_data
     from pipelines.extract.extract_postgres_to_raw import extract_postgres_to_raw
+    from pipelines.load.warehouse_loader import load_warehouse_models
     from pipelines.quality.run_quality_checks import main as run_data_quality_checks
     from pipelines.transform.bronze_to_silver import convert_all_bronze_to_silver
     from pipelines.transform.raw_to_bronze import convert_all_raw_to_bronze
@@ -36,7 +37,10 @@ try:
 
     with DAG(
         dag_id="ecommerce_data_pipeline",
-        description="End-to-end ecommerce data pipeline from PostgreSQL to raw, bronze, silver, gold and quality checks.",
+        description=(
+            "End-to-end ecommerce data pipeline from PostgreSQL to raw, bronze, "
+            "silver, gold and quality checks."
+        ),
         default_args=default_args,
         start_date=datetime(2026, 1, 1),
         schedule="@daily",

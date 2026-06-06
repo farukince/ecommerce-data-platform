@@ -44,7 +44,11 @@ def build_cart_updated_event() -> dict:
             "product_id": random.randint(1, 200),
             "quantity": random.randint(1, 5),
             "cart_action": random.choice(
-                ["product_added_to_cart", "product_removed_from_cart", "cart_quantity_updated"]
+                [
+                    "product_added_to_cart",
+                    "product_removed_from_cart",
+                    "cart_quantity_updated",
+                ]
             ),
         }
     )

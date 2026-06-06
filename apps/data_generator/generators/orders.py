@@ -79,9 +79,11 @@ def generate_payments(order_ids: list[int], count: int = 300) -> list[dict]:
                 "payment_status": payment_status,
                 "payment_method": random.choice(PAYMENT_METHODS),
                 "payment_amount": round(random.uniform(100, 15000), 2),
-                "paid_at": random_datetime_within_days()
-                if payment_status == "success"
-                else None,
+                "paid_at": (
+                    random_datetime_within_days()
+                    if payment_status == "success"
+                    else None
+                ),
             }
         )
 
