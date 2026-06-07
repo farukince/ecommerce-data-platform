@@ -2,7 +2,6 @@ from pathlib import Path
 
 import pandas as pd
 
-
 BRONZE_BASE_PATH = Path("data_lake/bronze")
 SILVER_BASE_PATH = Path("data_lake/silver")
 

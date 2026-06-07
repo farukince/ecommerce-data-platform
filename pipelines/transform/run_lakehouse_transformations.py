@@ -2,7 +2,6 @@ from pipelines.transform.bronze_to_silver import convert_all_bronze_to_silver
 from pipelines.transform.raw_to_bronze import convert_all_raw_to_bronze
 from pipelines.transform.silver_to_gold import build_all_gold_datasets
 
-
 SOURCE_TABLES = [
     "users",
     "sellers",

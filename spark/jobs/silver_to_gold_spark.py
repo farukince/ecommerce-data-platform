@@ -3,7 +3,6 @@ from pathlib import Path
 from pyspark.sql.functions import (
     avg,
     col,
-    count,
     countDistinct,
     lit,
     round,
@@ -13,7 +12,6 @@ from pyspark.sql.functions import (
 )
 
 from spark.utils.spark_session import get_spark_session
-
 
 SILVER_BASE_PATH = Path("data_lake/silver")
 GOLD_BASE_PATH = Path("data_lake/gold")
@@ -98,16 +96,14 @@ def build_conversion_funnel() -> None:
     spark = get_spark_session("silver-to-gold-spark")
 
     product_views = (
-        click_events
-        .filter(col("event_type") == "product_viewed")
+        click_events.filter(col("event_type") == "product_viewed")
         .select("user_id")
         .distinct()
         .count()
     )
 
     cart_adds = (
-        cart_events
-        .filter(col("event_type") == "product_added_to_cart")
+        cart_events.filter(col("event_type") == "product_added_to_cart")
         .select("user_id")
         .distinct()
         .count()

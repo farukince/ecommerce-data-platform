@@ -2,7 +2,6 @@ from pathlib import Path
 
 from apps.data_generator.db import get_engine
 
-
 WAREHOUSE_SQL_PATH = Path("warehouse/marts/001_create_fact_dimension_tables.sql")
 
 

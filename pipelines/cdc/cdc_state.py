@@ -2,7 +2,6 @@ import json
 from datetime import datetime
 from pathlib import Path
 
-
 STATE_PATH = Path("data_lake/raw/cdc_state/state.json")
 
 

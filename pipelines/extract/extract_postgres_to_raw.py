@@ -1,7 +1,6 @@
 from pipelines.extract.postgres_extractor import extract_table
 from pipelines.extract.raw_data_writer import write_json_to_raw_layer
 
-
 SOURCE_TABLES = [
     "users",
     "sellers",

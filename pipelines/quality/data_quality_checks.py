@@ -3,7 +3,6 @@ from pathlib import Path
 
 import pandas as pd
 
-
 SILVER_BASE_PATH = Path("data_lake/silver")
 
 
@@ -104,9 +103,8 @@ def check_order_total_matches_items() -> QualityCheckResult:
         order_item_totals["quantity"] * order_item_totals["unit_price"]
     )
 
-    item_totals = (
-        order_item_totals.groupby("order_id", as_index=False)
-        .agg(items_total_amount=("line_amount", "sum"))
+    item_totals = order_item_totals.groupby("order_id", as_index=False).agg(
+        items_total_amount=("line_amount", "sum")
     )
 
     merged = orders.merge(item_totals, on="order_id", how="left")
@@ -122,7 +120,10 @@ def check_order_total_matches_items() -> QualityCheckResult:
         table_name="orders",
         failed_rows=failed_rows,
         total_rows=len(orders),
-        description="orders.total_amount should match sum(quantity * unit_price) from order_items.",
+        description=(
+            "orders.total_amount should match sum(quantity * unit_price)"
+            "from order_items."
+        ),
     )
 
 

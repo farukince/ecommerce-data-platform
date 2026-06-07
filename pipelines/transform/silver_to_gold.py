@@ -2,7 +2,6 @@ from pathlib import Path
 
 import pandas as pd
 
-
 SILVER_BASE_PATH = Path("data_lake/silver")
 GOLD_BASE_PATH = Path("data_lake/gold")
 
@@ -21,7 +20,9 @@ def write_gold_dataset(dataset_name: str, df: pd.DataFrame) -> Path:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_path = output_dir / f"{dataset_name}.json"
-    df.to_json(output_path, orient="records", force_ascii=False, indent=2, date_format="iso")
+    df.to_json(
+        output_path, orient="records", force_ascii=False, indent=2, date_format="iso"
+    )
 
     print(
         f"Gold created | dataset={dataset_name} | rows={len(df)} | output={output_path}"
@@ -53,9 +54,8 @@ def build_category_sales() -> Path:
     products = read_silver_table("products")
     categories = read_silver_table("categories")
 
-    merged = (
-        order_items.merge(products, on="product_id", how="left")
-        .merge(categories, on="category_id", how="left")
+    merged = order_items.merge(products, on="product_id", how="left").merge(
+        categories, on="category_id", how="left"
     )
 
     merged["line_amount"] = merged["quantity"] * merged["unit_price"]
@@ -94,13 +94,13 @@ def build_conversion_funnel() -> Path:
     cart_events = read_silver_table("cart_events")
     orders = read_silver_table("orders")
 
-    product_views = click_events[
-        click_events["event_type"] == "product_viewed"
-    ]["user_id"].nunique()
+    product_views = click_events[click_events["event_type"] == "product_viewed"][
+        "user_id"
+    ].nunique()
 
-    cart_adds = cart_events[
-        cart_events["event_type"] == "product_added_to_cart"
-    ]["user_id"].nunique()
+    cart_adds = cart_events[cart_events["event_type"] == "product_added_to_cart"][
+        "user_id"
+    ].nunique()
 
     purchasers = orders["user_id"].nunique()
 
